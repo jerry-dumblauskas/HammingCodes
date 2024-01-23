@@ -50,6 +50,36 @@ Convert unsigned int array back to char array and print to console.
 
 #### Main Function: int readEHCfromfile(const char* filenamein);
 
+This files main function is to read a binary file in Extended Hamming Code, fix any detected errors, and then write the fixed block back into its position. This is achieved in the following five steps.
+
+**Data Reading:**<br/>
+Read each byte of a file into a char array and convert that to unsigned short int array.
+
+**Detect Errors:**<br/>
+Send each block into a function which uses an xor to return the location error if an error exists.<br/>
+Add to a list of locations for all blocks.
+
+**Fix Data:**<br/>
+Send error data to a function which will flip the bit at the location of the error, if an error exists.
+
+**Write Data:**<br/>
+Convert unsigned int array back to char array and print to console.
+
 ## helper.c
 
+__int ispoweroftwo(unsigned short int num);__<br/>
+Return 1 if num is power of two, 0 if not.
+
+__unsigned short int* chararrtointarr(unsigned char* arr, int numBytes);__<br/>
+Given a char pointer and number of bytes, store the bit data into 16 bit unsigned int pointer.
+
+__unsigned char* intarrtochararr(unsigned short int* arr, int numBytes);__<br/>
+Given a 16 bit unsigned int pointer and the number of bytes, reassign to a char pointer.
+
 ## m.sh
+
+'''shell
+gcc main.c encoder.c reader.c fixer.c helper.c -o app.exe -Wall
+'''
+
+This is the gcc command to build the executable. It will be placed in the current directory with the name **app.exe**.
