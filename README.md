@@ -78,8 +78,8 @@ Given a 16 bit unsigned int pointer and the number of bytes, reassign to a char 
 
 ## m.sh
 
-'''shell
+```bash
 gcc main.c encoder.c reader.c fixer.c helper.c -o app.exe -Wall
-'''
+```
 
 This is the gcc command to build the executable. It will be placed in the current directory with the name **app.exe**.
