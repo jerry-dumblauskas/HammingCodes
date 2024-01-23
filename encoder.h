@@ -1,0 +1,1 @@
+int encodefilecontents(const char* filenamein, const char* filenameout);

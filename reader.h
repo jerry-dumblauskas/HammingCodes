@@ -1,0 +1,1 @@
+int readEHCfromfile(const char* filenamein);

@@ -1,0 +1,1 @@
+int readandfixfile(const char* filename);
