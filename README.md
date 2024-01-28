@@ -1,5 +1,27 @@
 # C implementation of Extended Hamming Codes
 
+This repo is a C implementation of Extended Hamming Codes. I was inspired to make this by the two part series by 3blue1brown as well as the chessboard puzzle videos by both 3blue1brown and Standup Maths.
+
+## 3blue1brown part 1
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=X8jsijhllIA
+" target="_blank"><img src="http://img.youtube.com/vi/X8jsijhllIA/0.jpg" 
+alt="3blue1brown Hamming Codes part 1" width="240" height="180" border="3" /></a>
+
+## 3blue1brown part 2
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=b3NxrZOu_CE
+" target="_blank"><img src="http://img.youtube.com/vi/b3NxrZOu_CE/0.jpg" 
+alt="3blue1brown Hamming Codes part 2" width="240" height="180" border="3" /></a>
+
+## 3blue1brown Chessboard Puzzle
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=wTJI_WuZSwE
+" target="_blank"><img src="http://img.youtube.com/vi/wTJI_WuZSwE/0.jpg" 
+alt="3blue1brown Chessboard Puzzle" width="240" height="180" border="3" /></a>
+
+## Standup Maths Chessboard Puzzle
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=as7Gkm7Y7h4
+" target="_blank"><img src="http://img.youtube.com/vi/as7Gkm7Y7h4/0.jpg" 
+alt="Standup Maths Chessboard Puzzle" width="240" height="180" border="3" /></a>
+
 ## encoder.c
 
 #### Main Function: encodefilecontents(const char* filenamein, const char* filenameout);
@@ -82,4 +104,4 @@ Given a 16 bit unsigned int pointer and the number of bytes, reassign to a char 
 gcc main.c encoder.c reader.c fixer.c helper.c -o app.exe -Wall
 ```
 
-This is the gcc command to build the executable. It will be placed in the current directory with the name **app.exe**.
+This is the gcc command to build the executable. It will be placed in the current directory with the name _app.exe_.
