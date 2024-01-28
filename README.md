@@ -1,26 +1,43 @@
 # C implementation of Extended Hamming Codes
 
-This repo is a C implementation of Extended Hamming Codes. I was inspired to make this by the two part series by 3blue1brown as well as the chessboard puzzle videos by both 3blue1brown and Standup Maths.
+This repo is a C implementation of Extended Hamming Codes. I was inspired to make this by the two part series by 3blue1brown as well as the chessboard puzzle videos by both 3blue1brown and Standup Maths (Videos linked below).
+
+#### Bit Implementation
+
+If you read through the code, you'll quickly realize that almost all of the operations use unsigned integers to store bit data. Frankly it isn't super important. I could have used integers to store 0s and 1s, but I felt it would defeat the purpose of a compact method of error correction to needlessly inflate the storage space by 16 times (1 bit vs 16 bit unsigned short int).
+
+#### 16 bit blocks
+
+
+#### Reading/Writing Binary Files
+
+
+
+#### Why C?
+
+Because I wanted to. I like the idea of low level languages, and this seemed like a good (semi-simple) project to help me solidify my foundations and get some hands-on experience. Especially regarding pointers, which I understood conceptually but haven't had a whole lot of practice implementing. 
+
+
 
 ## 3blue1brown part 1
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=X8jsijhllIA
 " target="_blank"><img src="http://img.youtube.com/vi/X8jsijhllIA/0.jpg" 
-alt="3blue1brown Hamming Codes part 1" width="240" height="180" border="3" /></a>
+alt="3blue1brown Hamming Codes part 1" width="160" height="120" border="3" /></a>
 
 ## 3blue1brown part 2
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=b3NxrZOu_CE
 " target="_blank"><img src="http://img.youtube.com/vi/b3NxrZOu_CE/0.jpg" 
-alt="3blue1brown Hamming Codes part 2" width="240" height="180" border="3" /></a>
+alt="3blue1brown Hamming Codes part 2" width="160" height="120" border="3" /></a>
 
 ## 3blue1brown Chessboard Puzzle
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=wTJI_WuZSwE
 " target="_blank"><img src="http://img.youtube.com/vi/wTJI_WuZSwE/0.jpg" 
-alt="3blue1brown Chessboard Puzzle" width="240" height="180" border="3" /></a>
+alt="3blue1brown Chessboard Puzzle" width="160" height="120" border="3" /></a>
 
 ## Standup Maths Chessboard Puzzle
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=as7Gkm7Y7h4
 " target="_blank"><img src="http://img.youtube.com/vi/as7Gkm7Y7h4/0.jpg" 
-alt="Standup Maths Chessboard Puzzle" width="240" height="180" border="3" /></a>
+alt="Standup Maths Chessboard Puzzle" width="160" height="120" border="3" /></a>
 
 ## encoder.c
 
@@ -104,4 +121,4 @@ Given a 16 bit unsigned int pointer and the number of bytes, reassign to a char 
 gcc main.c encoder.c reader.c fixer.c helper.c -o app.exe -Wall
 ```
 
-This is the gcc command to build the executable. It will be placed in the current directory with the name _app.exe_.
+This is the gcc command to build the executable. It will be placed in the current directory with the name _app.exe_. If you run ```./m.sh``` it will run the above command.
