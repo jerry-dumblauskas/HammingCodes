@@ -1,1 +1,1 @@
-gcc main.c encoder.c reader.c fixer.c helper.c -o app.exe -Wall
+gcc main.c encoder.c reader.c fixer.c scramble.c helper.c -o app.exe -Wall

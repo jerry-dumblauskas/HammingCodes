@@ -2,7 +2,7 @@
 This repo is a C implementation of Extended Hamming Codes. I was inspired to make this by the two part series by 3blue1brown as well as the chessboard puzzle videos by both 3blue1brown and Standup Maths (videos linked at bottom).
 
 ## Using The Executable
-The compiled executable can be run in the command line and has three modes.<br/>
+The compiled executable can be run in the command line and has four modes.<br/>
 The first command line argument is a single integer that determines the mode.<br/>
 Each mode then accepts the following appropriate command line arguments.<br/>
 _ENCODE = 1;<br/> READ = 2;<br/> FIX = 3;_<br/>
@@ -25,12 +25,18 @@ Reads encoded data in ```filenamein``` and prints decoded value to console.
 ```
 Reads encoded data in ```fixfilename```, prints each block's status, fixes fixable blocks, and writes corrected data back into ```fixfilename```
 
-## Decisions
+#### Scramble
+```bash
+./app.exe 4 numbitstoscramble scramblefilename
+```
+Reads encoded data in ```scramblefilename```, flips ```numbitstoscramble``` random bits, and writes scrambled data back into ```scramblefilename```.
+
+## Decision Making Insights
 #### Bit Implementation
 If you read through the code, you'll quickly realize that almost all of the operations use unsigned integers to store bit data. Frankly, it's makes the code a decent bit more complicated. I could have just stored the data as integer arrays, but doing that felt like it would defeat the purpose of Hamming Codes. Hamming Codes are a way make error correction possible with less redundancy. Using integers would result in 16 to 32 times extra space being used (short int and int compared to individual bits). So, while not necessary, I felt it appropriate to at least slightly optimize for space since that's the purpose of the codes anyway.
 
 #### 16 bit blocks
-Hamming Codes can be implemented with any block size that is a power of two. The bigger the block size, the smaller percentage of the block is needed for reduntancy (number of reduntant bits = log<sub>2</sub>(block_size) + 1). However, a bigger block also means the Hamming Code can correct less data, as it can only identify and fix one error per block. I chose a 16 bit block for two main reasons. First, I wanted relatively small blocks so I could test the functions easier. I didn't want to have to solve a 32, 64, or 256 bit Hamming Code by hand anytime something went wrong in my algorithm. I had actually intended to start it small and then make the program able to accept a variable block size as an input parameter, but due to an issue I ran into later, I didn't end up implementing that. Second, I wanted
+Hamming Codes can be implemented with any block size that is a power of two. The bigger the block size, the smaller percentage of the block is needed for reduntancy (number of reduntant bits = log<sub>2</sub>(block_size) + 1). However, a bigger block also means the Hamming Code can correct less data, as it can only identify and fix one error per block. I chose a 16 bit block for two main reasons. First, I wanted relatively small blocks so I could test the functions easier. I didn't want to have to solve a 32, 64, or 256 bit Hamming Code by hand anytime something went wrong in my algorithm. I had actually intended to start it small and then make the program able to accept a variable block size as an input parameter, but due to an issue I ran into later, I didn't end up implementing that. Second, I wanted 
 
 #### Why C?
 Because I wanted to. I like the idea of low level languages, and this seemed like a good (semi-simple) project to help me solidify my foundations and get some hands-on experience. Especially regarding pointers, which I understood conceptually but haven't had a whole lot of practice implementing. 
@@ -50,9 +56,7 @@ This is the obvious goal of this project. I wanted to be sure that I truly under
 
 ## File Details
 ### **encoder.c**
-
 #### Main Function: encodefilecontents(const char* filenamein, const char* filenameout);
-
 This file's main function takes a file name as input and a file name as output.<br/>
 It reads the input file and writes the extended hamming code into the output file through five main steps.
 
@@ -76,7 +80,6 @@ Write the newly paratized data back into _filenameout_.
 
 ### **reader.c**
 #### Main Function: int readEHCfromfile(const char* filenamein);
-
 This files main function takes one filename as input.<br/>
 It reads that file, assuming it is in EHC, and extracts the valuable bits before printing them.
 This file runs through the following four main steps.
@@ -96,7 +99,6 @@ Convert unsigned int array back to char array and print to console.
 
 ### **fixer.c**
 #### Main Function: int readEHCfromfile(const char* filenamein);
-
 This files main function is to read a binary file in Extended Hamming Code, fix any detected errors, and then write the fixed block back into its position. This is achieved in the following five steps.
 
 #### Data Reading:
@@ -112,8 +114,11 @@ Send error data to a function which will flip the bit at the location of the err
 #### Write Data:
 Convert unsigned int array back to char array and print to console.
 
-### **helper.c**
+### **scramble.c**
+#### Main Function: int scramblenbitsfromfile(int numbits, const char* filenamein);
+//TODO: write
 
+### **helper.c**
 #### int ispoweroftwo(unsigned short int num);
 Return 1 if num is power of two, 0 if not.
 
@@ -124,7 +129,6 @@ Given a char pointer and number of bytes, store the bit data into 16 bit unsigne
 Given a 16 bit unsigned int pointer and the number of bytes, reassign to a char pointer.
 
 ### **m.sh**
-
 ```bash
 gcc main.c encoder.c reader.c fixer.c helper.c -o app.exe -Wall
 ```

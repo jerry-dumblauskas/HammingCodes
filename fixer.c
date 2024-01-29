@@ -62,7 +62,7 @@ unsigned short int* fixmultiplevals(unsigned short int* blocks, unsigned short i
         } else
         {
             correctedData[i] = fixdata(blocks[i], errorvals[i]);
-            printf("Block %i corrected\n\n", i);
+            printf("Block %i corrected\n", i);
         }
     }
 
@@ -111,7 +111,7 @@ int readandfixfile(const char* filename)
         printf("file '%s' does not exist", filename);
         return -1;
     }
-    // fwrite(writedata, 1, finSize, fout);
+    fwrite(writedata, 1, finSize, fout);
     
     fclose(fout);
     

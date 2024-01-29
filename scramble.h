@@ -1,0 +1,1 @@
+int scramblenbitsfromfile(int numbits, const char* filename);

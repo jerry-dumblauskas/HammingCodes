@@ -4,8 +4,9 @@
 #include "encoder.h"
 #include "reader.h"
 #include "fixer.h"
+#include "scramble.h"
 
-enum OPERATION {ENCODE = 1, READ = 2, FIX = 3, INVALID = -1};
+enum OPERATION {ENCODE = 1, READ = 2, FIX = 3, SCRAMBLE = 4, INVALID = -1};
 
 int checkencode(int numArgs, char* args[])
 {
@@ -34,6 +35,15 @@ int checkfix(int numArgs, char* args[])
     return FIX;
 }
 
+int checkscramble(int numArgs, char* args[])
+{
+    if (numArgs != 4)
+    {
+        return INVALID;
+    }
+    return SCRAMBLE;
+}
+
 int checkargs(int numArgs, char* args[])
 {
     int op = atoi(args[1]);
@@ -47,6 +57,9 @@ int checkargs(int numArgs, char* args[])
     } else if (op == FIX)
     {
         return checkfix(numArgs, args);
+    } else if (op == SCRAMBLE)
+    {
+        return checkscramble(numArgs, args);
     }
 
     return INVALID;
@@ -69,6 +82,9 @@ int main(int argc, char* argv[])
     } else if (operationCode == FIX)
     {
         exitCode = readandfixfile(argv[2]);
+    } else if (operationCode == SCRAMBLE)
+    {
+        exitCode = scramblenbitsfromfile(atoi(argv[2]), argv[3]);
     }
 
     printf("EXIT CODE: %i", exitCode);
