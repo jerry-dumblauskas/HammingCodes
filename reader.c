@@ -92,6 +92,7 @@ unsigned short int* condenseblocks(unsigned short int* alignedBlocks, int numBlo
 
 unsigned short int* readEHC(unsigned short int* blocks, int numBlocks)
 {
+
     unsigned short int* rawdata = readblocks(blocks, numBlocks);
     unsigned short int* treatedData = condenseblocks(rawdata, numBlocks);
     return treatedData;
@@ -129,6 +130,7 @@ int readEHCfromfile(const char* filenamein)
     unsigned short int* data = readEHC(blocks, (finSize + 2 - 1) / 2);
     unsigned char* text = intarrtochararr(data, numBytes);
 
+
     for (int i = 0; i < numBytes; i++)
     {
         printf("%c", text[i]);
@@ -145,3 +147,4 @@ int main()
     return res;
 }
 */
+

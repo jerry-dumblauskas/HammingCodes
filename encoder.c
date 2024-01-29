@@ -8,7 +8,7 @@ Takes a short with 11 bits (aligned to least significant bit)
 returns with bits in data portion of
 a 16 bit extended hamming code
 */
-unsigned short int rearange(unsigned short int elevenbit)
+unsigned short int rearrange(unsigned short int elevenbit)
 {
     unsigned short int mask = 1;
     unsigned short int ehcPositionOffset = 15;
@@ -104,7 +104,7 @@ returns 16 bits in extended hamming code.
 */
 unsigned short int encode(unsigned short int data)
 {
-    unsigned short int unparatized = rearange(data);
+    unsigned short int unparatized = rearrange(data);
     unsigned short int paratized = flipparitybits(unparatized);
     return paratized;
 }
@@ -190,9 +190,10 @@ int encodefilecontents(const char* filenamein, const char* filenameout)
 
     unsigned short int* alignedData = uncondensedata(finData, numBlocks);
     unsigned short int* encoded = encodemultiple(alignedData, numBlocks);
+    unsigned char* chararr = intarrtochararr(encoded, numBlocks * 2);
 
     FILE* fout = fopen(filenameout, "wb");
-    fwrite(encoded, sizeof(short), numBlocks, fout);
+    fwrite(chararr, sizeof(unsigned char), numBlocks * 2, fout);
     
     fclose(fout);
     free(encoded);

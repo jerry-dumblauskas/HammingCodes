@@ -7,6 +7,7 @@ int flipbitinbyteatindex(long int index, unsigned char* data)
 {
     int bitIndex = rand() % 8;
     data[index] ^= (1 << bitIndex);
+    printf("Flipped bit %i of char %li\n", bitIndex, index);
     return 0;
 }
 

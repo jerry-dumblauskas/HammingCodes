@@ -8,7 +8,7 @@ int ispoweroftwo(unsigned short int num)
 unsigned short int* chararrtointarr(unsigned char* arr, int numBytes)
 {
     unsigned short int* intarr = (unsigned short int*)calloc((numBytes + 2 - 1) / 2, sizeof(short));
-    unsigned short int sFlag = 0;
+    unsigned short int sFlag = 1;
     unsigned short int temp;
 
     for (int i = 0; i < numBytes; i++)
