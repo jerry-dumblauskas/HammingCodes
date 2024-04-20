@@ -68,7 +68,7 @@ int checkargs(int numArgs, char* args[])
 int main(int argc, char* argv[])
 {
     int operationCode = checkargs(argc, argv);
-    int exitCode;
+    int exitCode = -1;
 
     if (operationCode == INVALID)
     {
